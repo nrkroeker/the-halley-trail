@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/actions/SubmitShortcut.tres" type="ShortCut" id=1]
+
+[node name="NameEntryUI" type="Control"]
+focus_next = NodePath("LineEdit")
+focus_mode = 2
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 330.0
+margin_top = 229.0
+margin_right = 682.0
+margin_bottom = 275.0
+text = "Enter a name for your ship"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 290.0
+margin_top = 278.0
+margin_right = 710.0
+margin_bottom = 328.0
+placeholder_text = "SS Independence "
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Button" type="Button" parent="."]
+margin_left = 419.0
+margin_top = 385.0
+margin_right = 578.0
+margin_bottom = 431.0
+shortcut = ExtResource( 1 )
+text = "CONTINUE"

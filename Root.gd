@@ -10,9 +10,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	rotate_ship()
+
+func rotate_ship():
 	var t = $Camera.transform
 	t = t.rotated(Vector3(0,1,0), deg2rad(-0.3))
 	$Camera.transform = t
 	var t2 = $Spacecraft.transform
 	t2 = t2.rotated(Vector3(0,1,0), deg2rad(-0.3))
 	$Spacecraft.transform = t2
+
+func _on_StartUI_begin_game():
+	print("starting game")
+	$StartUI.hide()
+	$NameEntryUI.show()
