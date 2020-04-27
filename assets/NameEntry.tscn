@@ -1,19 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=2]
 
-[ext_resource path="res://assets/theme.tres" type="Theme" id=1]
-
-[node name="NameEntry" type="CanvasLayer"]
+[node name="NameEntry" type="Control"]
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -168.0
-margin_top = -15.0
-margin_right = 168.0
-margin_bottom = 15.0
-theme = ExtResource( 1 )
+margin_left = 330.0
+margin_top = 230.0
+margin_right = 670.0
+margin_bottom = 264.0
 text = "Enter a name for your ship"
 
 [node name="LineEdit" type="LineEdit" parent="."]
@@ -21,21 +18,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -202.0
-margin_top = -260.0
-margin_right = 218.0
-margin_bottom = -210.0
-theme = ExtResource( 1 )
+margin_left = 290.0
+margin_top = 280.0
+margin_right = 710.0
+margin_bottom = 330.0
 placeholder_text = "SS Independence "
+caret_blink = true
+caret_blink_speed = 0.5
 
 [node name="Label2" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -172.0
-margin_top = -140.0
-margin_right = 186.0
-margin_bottom = -110.0
-theme = ExtResource( 1 )
+margin_left = 320.0
+margin_top = 430.0
+margin_right = 682.0
+margin_bottom = 464.0
 text = "< Press SPACE to continue >"
