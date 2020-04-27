@@ -16,7 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="The Halley Trail"
+run/main_scene="res://Root.tscn"
 config/icon="res://icon.png"
+
+[gui]
+
+theme/custom="res://assets/theme.tres"
+theme/custom_font="res://assets/orbitron_dynamicfont.tres"
 
 [rendering]
 
