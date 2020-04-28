@@ -3,13 +3,13 @@ extends KinematicBody
 var is_movable = false
 
 var speed = 10
-
 var velocity = Vector3()
 
 func set_movement(new_movement):
 	is_movable = new_movement
 
-func get_input():
+func get_input(delta):
+	var velocity = Vector3()
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= speed
 	if Input.is_action_pressed("ui_right"):
@@ -20,8 +20,8 @@ func get_input():
 		velocity.z -= speed
 		
 func _physics_process(delta):
-	velocity.y = 0
-	velocity.z = 0
+	#velocity.y = 0
+	#velocity.z = 0
 	if is_movable:
-		get_input()
+		get_input(delta)
 	velocity = move_and_slide(velocity, Vector3.ZERO)

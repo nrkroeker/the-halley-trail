@@ -9,8 +9,6 @@ var meteor_spawn_distance = 15 # y coordinate just below spawn area
 
 var is_spawning = false
 
-var zone
-
 func _ready():
 	connect("timeout",self,"_on_timeout")
 	# zone = $MeteorZone

@@ -8,15 +8,15 @@ func _on_StartUI_begin_game():
 	$IntroUI.show()
 
 func _on_game_start():
-	set_current_camera("back")
-	$Spacecraft.set_movement(true)
+	#set_current_camera("back")
+	$ShipManager.set_movement(true)
 	$WorldEnvironment/WorldAnimation.stop()
 	$MeteorSpawner.start()
 	$MeteorSpawner.set_spawning(true)
 
 func _on_game_reset():
-	set_current_camera("front")
-	$Spacecraft.set_movement(false)
+	#set_current_camera("front")
+	$ShipManager.set_movement(false)
 
 func set_current_camera(perspective):
 	match perspective:
