@@ -1,13 +1,13 @@
 extends Spatial
 
-var GUIDE_X_RANGE = 200.0
-var GUIDE_Y_RANGE = 140.0
-var SHIP_X_RANGE = 100.0
-var SHIP_Y_RANGE = 140.0
-var CAMERA_X_RANGE = 100.0
-var CAMERA_Y_RANGE = 60.0
+var GUIDE_X_RANGE = 700
+var GUIDE_Y_RANGE = 50.0
+var SHIP_X_RANGE = 30.0
+var SHIP_Y_RANGE = 50.0
+var CAMERA_X_RANGE = 50.0
+var CAMERA_Y_RANGE = 30.0
 
-var CAMERA_OFFSET = Vector3(0,10,50)
+var CAMERA_OFFSET = Vector3(0,15,50)
 
 onready var guide = $PositionGuide
 onready var ship = $Ship
