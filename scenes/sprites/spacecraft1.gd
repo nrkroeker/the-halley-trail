@@ -11,13 +11,13 @@ func set_movement(new_movement):
 
 func get_input():
 	if Input.is_action_pressed("ui_left"):
-		velocity.z += speed
+		velocity.x -= speed
 	if Input.is_action_pressed("ui_right"):
-		velocity.z -= speed
+		velocity.x += speed
 	if Input.is_action_pressed("ui_up"):
-		velocity.y += speed
+		velocity.z += speed * 2
 	if Input.is_action_pressed("ui_down"):
-		velocity.y -= speed
+		velocity.z -= speed * 2
 		
 func _physics_process(delta):
 	velocity.y = 0

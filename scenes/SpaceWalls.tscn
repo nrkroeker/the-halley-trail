@@ -6,27 +6,27 @@ extents = Vector3( 3.85059, 0.0847299, 2.97902 )
 [node name="SpaceWalls" type="Spatial"]
 
 [node name="RightWall" type="StaticBody" parent="."]
-transform = Transform( 0.95, 0, 0, 0, -5.66244e-008, -0.95, 0, 0.95, -5.66244e-008, 0, 0, 3 )
+transform = Transform( -1.30183e-007, -2.97825, 1.77518e-007, 0, -1.21742e-007, -2.0425, 1.9, -8.30516e-008, 4.95026e-015, -16.2425, 0, -0.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RightWall"]
 transform = Transform( 1, 0, 0, 0, 1, 2.98023e-008, 0, 2.98023e-008, 1.5, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="LeftWall" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, -5.96046e-008, -1, 0, 1, -5.96046e-008, 0, 0, -4 )
+transform = Transform( -1.37035e-007, -3.135, 1.86861e-007, 0, -1.2815e-007, -2.15, 2, -8.74228e-008, 5.2108e-015, 17.2425, 0, -0.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="LeftWall"]
 transform = Transform( 1, 0, 0, 0, 1, 2.38419e-008, 0, 2.38418e-008, 1.4, 0, 1, -5.96046e-008 )
 shape = SubResource( 1 )
 
 [node name="TopWall" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, -1, 1.03316e-007, 0, -1.03316e-007, -1, 0, 4, 0 )
+transform = Transform( -2.16622e-007, 5.12007e-007, 4.95574, 0, -1.65375, 1.70859e-007, 1.9425, 8.7725e-015, 8.49094e-008, -0.5, 6.615, -0.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="TopWall"]
 shape = SubResource( 1 )
 
 [node name="BottomWall" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, -1, 1.03316e-007, 0, -1.03316e-007, -1, 0, -4, 0 )
+transform = Transform( -2.16622e-007, 5.12007e-007, 4.95574, 0, -1.65375, 1.70859e-007, 1.9425, 8.7725e-015, 8.49094e-008, -0.5, -6.615, -0.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="BottomWall"]
 shape = SubResource( 1 )

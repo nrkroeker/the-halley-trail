@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://objects/ui/NameEntryUI.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/NameEntryUI.gd" type="Script" id=1]
 [ext_resource path="res://assets/actions/SubmitShortcut.tres" type="ShortCut" id=2]
 
 [node name="NameEntryUI" type="Control"]
