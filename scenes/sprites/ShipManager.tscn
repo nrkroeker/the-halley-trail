@@ -15,3 +15,4 @@ far = 350.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -50 )
 
 [node name="Ship" parent="." instance=ExtResource( 2 )]
+[connection signal="collision" from="Ship" to="." method="_on_Ship_collision"]

@@ -3,7 +3,7 @@ extends Timer
 var meteor_scene = preload('res://scenes/sprites/Meteor.tscn')
 var meteor_count = 0
 var meteor_spawn_rate = 80
-var max_meteors = 500
+var max_meteors = 100
 
 onready var ship_manager = get_parent().get_node("ShipManager")
 
