@@ -24,6 +24,8 @@ func _on_UI_transition():
 			set_current_camera("back")
 			$Spacecraft.set_movement(true)
 			$WorldEnvironment/WorldAnimation.stop()
+			$MeteorSpawner.start()
+			$MeteorSpawner.set_spawning(true)
 		"hud":
 			$HudUI.hide()
 			$StartUI.show()

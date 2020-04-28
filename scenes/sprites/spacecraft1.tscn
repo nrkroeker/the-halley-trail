@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 2, 0 ), Vector3( 0, 4, 0 ), Vector3( 0, 2, 0 ) ]
 }
 
-[node name="spacecraft1" instance=ExtResource( 1 )]
+[node name="spacecraft1" index="0" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41227, 0 )
 script = ExtResource( 2 )
 
