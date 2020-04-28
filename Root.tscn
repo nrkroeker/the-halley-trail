@@ -1,14 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://assets/space_bg.jpg" type="Texture" id=2]
 [ext_resource path="res://scenes/sprites/spacecraft1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/ui/StartUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/ui/IntroUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/ui/NameEntryUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/ui/HudUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/SpaceWalls.tscn" type="PackedScene" id=8]
-[ext_resource path="res://MeteorSpawner.gd" type="Script" id=9]
+[ext_resource path="res://scenes/SpaceWalls.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MeteorSpawner.gd" type="Script" id=5]
+[ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=6]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 2 )
@@ -75,40 +72,18 @@ transform = Transform( 0.25, 0, 0, 0, -1.09278e-008, -0.25, 0, 0.25, -1.09278e-0
 autoplay = "Fly"
 anims/Fly = SubResource( 4 )
 
-[node name="StartUI" parent="." instance=ExtResource( 4 )]
-
-[node name="IntroUI" parent="." instance=ExtResource( 5 )]
-visible = false
-margin_left = -1.0
-margin_top = -1.0
-margin_right = -1.0
-margin_bottom = -1.0
-
-[node name="NameEntryUI" parent="." instance=ExtResource( 6 )]
-visible = false
-margin_left = -1.0
-margin_top = -1.0
-margin_right = -1.0
-margin_bottom = -1.0
-
-[node name="HudUI" parent="." instance=ExtResource( 7 )]
-visible = false
-margin_left = -1.27063
-margin_top = 1.61806
-margin_right = -1.27063
-margin_bottom = 1.61804
-
 [node name="BackCamera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.300706, -0.953717, 0, 0.953717, 0.300706, 0, -7.8, 5 )
 fov = 90.0
 near = 0.03
 far = 1000.0
 
-[node name="SpaceWalls" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 3, 0 )
+[node name="SpaceWalls" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="MeteorSpawner" type="Timer" parent="."]
-script = ExtResource( 9 )
-[connection signal="transition" from="StartUI" to="." method="_on_UI_transition"]
-[connection signal="transition" from="IntroUI" to="." method="_on_UI_transition"]
-[connection signal="transition" from="NameEntryUI" to="." method="_on_UI_transition"]
+script = ExtResource( 5 )
+
+[node name="UIManager" parent="." instance=ExtResource( 6 )]
+[connection signal="game_reset" from="UIManager" to="." method="_on_game_reset"]
+[connection signal="game_start" from="UIManager" to="." method="_on_game_start"]
