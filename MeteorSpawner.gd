@@ -2,12 +2,12 @@ extends Timer
 
 var meteor_scene = preload('res://scenes/sprites/Meteor.tscn')
 var meteor_count = 0
-var meteor_spawn_rate = 50
+var meteor_spawn_rate = 80
 var max_meteors = 500
 
-onready var ship = get_parent().get_node("ShipManager")
+onready var ship_manager = get_parent().get_node("ShipManager")
 
-var meteor_spawn_distance = -15 # z coordinate far enough ahead of ship
+var meteor_spawn_distance = -100 # z coordinate far enough ahead of ship
 
 var is_spawning = false
 
@@ -30,9 +30,12 @@ func _on_timeout():
 		if spawn <= meteor_spawn_rate:
 			var item = meteor_scene.instance()
 			# Range on x and z axes within spaceship walls, with y set far enough for them to look small
-			var z = ship.translation.z + meteor_spawn_distance
-			var x = rand_range(-ship.SHIP_X_RANGE, ship.SHIP_X_RANGE)
-			var y = rand_range(-ship.SHIP_Y_RANGE, ship.SHIP_Y_RANGE)
+			var ship_location = ship_manager.ship.translation
+			var z = ship_manager.translation.z + meteor_spawn_distance
+			var x_offset = ship_manager.SHIP_X_RANGE * 0.25
+			var x = rand_range(ship_location.x - x_offset, ship_location.x + x_offset)
+			var y_offset = ship_manager.SHIP_Y_RANGE * 0.25
+			var y = rand_range(ship_location.y - y_offset, ship_location.y + y_offset)
 			item.translation = Vector3(x, y, z)
 			get_parent().add_child(item)
 			meteor_count += 1
