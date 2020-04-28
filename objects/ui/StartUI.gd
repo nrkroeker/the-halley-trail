@@ -1,6 +1,6 @@
 extends Control
 
-signal begin_game
+signal transition
 
 func _on_BeginButton_pressed():
-	emit_signal("begin_game")
+	emit_signal("transition")

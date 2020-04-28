@@ -1,26 +1,39 @@
 extends Spatial
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	rotate_ship()
-
-func rotate_ship():
-	var t = $Camera.transform
-	t = t.rotated(Vector3(0,1,0), deg2rad(-0.3))
-	$Camera.transform = t
-	var t2 = $Spacecraft.transform
-	t2 = t2.rotated(Vector3(0,1,0), deg2rad(-0.3))
-	$Spacecraft.transform = t2
+var ui_state = "start"
 
 func _on_StartUI_begin_game():
-	print("starting game")
+	ui_state = "intro"
 	$StartUI.hide()
-	$NameEntryUI.show()
+	$IntroUI.show()
+
+func _on_UI_transition():
+	match ui_state:
+		"start":
+			ui_state = "intro"
+			$StartUI.hide()
+			$IntroUI.show()
+		"intro":
+			ui_state = "name"
+			$IntroUI.hide()
+			$NameEntryUI.show()
+		"name":
+			ui_state = "hud"
+			$NameEntryUI.hide()
+			$HudUI.show()
+			set_current_camera("back")
+			$Spacecraft.set_movement(true)
+			$WorldEnvironment/WorldAnimation.stop()
+		"hud":
+			$HudUI.hide()
+			$StartUI.show()
+			set_current_camera("front")
+			$Spacecraft.set_movement(false)
+
+func set_current_camera(perspective):
+	match perspective:
+		"back":
+			$BackCamera.make_current()
+			$SpacecraftAnimation.stop()
+		"side":
+			$SideCamera.make_current()

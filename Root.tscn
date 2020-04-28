@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://assets/space_bg.jpg" type="Texture" id=2]
 [ext_resource path="res://objects/spacecraft1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://objects/ui/NameEntryUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://objects/ui/StartUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/ui/StartUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/ui/IntroUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/ui/NameEntryUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/ui/HudUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/SpaceWalls.tscn" type="PackedScene" id=8]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 2 )
@@ -14,6 +17,23 @@ background_mode = 2
 background_sky = SubResource( 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 16.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Rotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:background_sky_rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 359, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Fly"
@@ -32,30 +52,58 @@ tracks/0/keys = {
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 5.50671e-014, 1.19209e-007, 5.03799e-008, 0.906308, 0.422618, -1.0804e-007, 0.422618, -0.906308, 0, 9, 0 )
+[node name="SideCamera" type="Camera" parent="."]
+transform = Transform( -1, 6.03962e-014, 1.19209e-007, 3.08536e-008, 0.965926, 0.258819, -1.15147e-007, 0.258819, -0.965926, 0, 4, 0 )
 current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+editor/display_folded = true
 environment = SubResource( 2 )
 
+[node name="WorldAnimation" type="AnimationPlayer" parent="WorldEnvironment"]
+autoplay = "Rotate"
+anims/Rotate = SubResource( 4 )
+
 [node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 8, 20 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 8, 13 )
 light_energy = 15.1
 
 [node name="Spacecraft" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4, 21 )
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 4, 15 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="SpacecraftAnimation" type="AnimationPlayer" parent="."]
 autoplay = "Fly"
 anims/Fly = SubResource( 3 )
 
-[node name="NameEntryUI" parent="." instance=ExtResource( 4 )]
+[node name="StartUI" parent="." instance=ExtResource( 4 )]
+
+[node name="IntroUI" parent="." instance=ExtResource( 5 )]
 visible = false
 margin_left = -1.0
 margin_top = -1.0
 margin_right = -1.0
 margin_bottom = -1.0
 
-[node name="StartUI" parent="." instance=ExtResource( 5 )]
-[connection signal="begin_game" from="StartUI" to="." method="_on_StartUI_begin_game"]
+[node name="NameEntryUI" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_left = -1.0
+margin_top = -1.0
+margin_right = -1.0
+margin_bottom = -1.0
+
+[node name="HudUI" parent="." instance=ExtResource( 7 )]
+visible = false
+margin_left = -1.27063
+margin_top = 1.61806
+margin_right = -1.27063
+margin_bottom = 1.61804
+
+[node name="BackCamera" type="Camera" parent="."]
+transform = Transform( 0.00295843, -0.257834, 0.966185, -0.0225576, 0.965926, 0.257834, -0.999741, -0.0225576, -0.00295849, 5, 10, 15 )
+fov = 100.007
+
+[node name="SpaceWalls" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 2, 0, 7, 15 )
+[connection signal="transition" from="StartUI" to="." method="_on_UI_transition"]
+[connection signal="transition" from="IntroUI" to="." method="_on_UI_transition"]
+[connection signal="transition" from="NameEntryUI" to="." method="_on_UI_transition"]

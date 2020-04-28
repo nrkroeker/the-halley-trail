@@ -1,20 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/actions/SubmitShortcut.tres" type="ShortCut" id=1]
+[ext_resource path="res://objects/ui/NameEntryUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/actions/SubmitShortcut.tres" type="ShortCut" id=2]
 
 [node name="NameEntryUI" type="Control"]
 focus_next = NodePath("LineEdit")
 focus_mode = 2
+script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 330.0
-margin_top = 229.0
-margin_right = 682.0
-margin_bottom = 275.0
+margin_left = 321.0
+margin_top = 226.0
+margin_right = 673.0
+margin_bottom = 272.0
 text = "Enter a name for your ship"
 
 [node name="LineEdit" type="LineEdit" parent="."]
@@ -22,18 +24,20 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 290.0
-margin_top = 278.0
-margin_right = 710.0
-margin_bottom = 328.0
+margin_left = 285.0
+margin_top = 296.0
+margin_right = 705.0
+margin_bottom = 346.0
 placeholder_text = "SS Independence "
 caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Button" type="Button" parent="."]
-margin_left = 419.0
-margin_top = 385.0
-margin_right = 578.0
-margin_bottom = 431.0
-shortcut = ExtResource( 1 )
+margin_left = 421.0
+margin_top = 501.0
+margin_right = 580.0
+margin_bottom = 547.0
+shortcut_in_tooltip = false
+shortcut = ExtResource( 2 )
 text = "CONTINUE"
+[connection signal="pressed" from="Button" to="." method="_on_ProceedButton_pressed"]

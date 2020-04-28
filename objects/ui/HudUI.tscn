@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="HudUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.27063
+margin_top = 2.61806
+margin_right = -0.27063
+margin_bottom = 2.61804
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -276.0
+margin_bottom = 46.0
+text = "Ship Health: 100/100"
