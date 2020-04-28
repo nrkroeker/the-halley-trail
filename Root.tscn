@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
-[ext_resource path="res://assets/space_bg.jpg" type="Texture" id=2]
-[ext_resource path="res://scenes/SpaceWalls.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MeteorSpawner.gd" type="Script" id=4]
-[ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/sprites/ShipManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/space_bg_panorama.jpg" type="Texture" id=2]
+[ext_resource path="res://MeteorSpawner.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/sprites/ShipManager.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 2 )
@@ -13,26 +12,9 @@ panorama = ExtResource( 2 )
 [sub_resource type="Environment" id=2]
 background_mode = 2
 background_sky = SubResource( 1 )
-background_sky_orientation = Basis( 0.902736, 0, 0.430195, 0, 1, 0, -0.430195, 0, 0.902736 )
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 16.0
-
-[sub_resource type="Animation" id=3]
-resource_name = "Rotate"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:environment:background_sky_rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 359 ) ]
-}
+ambient_light_energy = 3.69
+ambient_light_sky_contribution = 0.9
 
 [node name="Root" type="Spatial"]
 script = ExtResource( 1 )
@@ -44,17 +26,11 @@ visible = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
-[node name="WorldAnimation" type="AnimationPlayer" parent="WorldEnvironment"]
-anims/Rotate = SubResource( 3 )
-
-[node name="SpaceWalls" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-
 [node name="MeteorSpawner" type="Timer" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 
-[node name="UIManager" parent="." instance=ExtResource( 5 )]
+[node name="UIManager" parent="." instance=ExtResource( 4 )]
 
-[node name="ShipManager" parent="." instance=ExtResource( 6 )]
+[node name="ShipManager" parent="." instance=ExtResource( 5 )]
 [connection signal="game_reset" from="UIManager" to="." method="_on_game_reset"]
 [connection signal="game_start" from="UIManager" to="." method="_on_game_start"]

@@ -5,7 +5,7 @@ var meteor_count = 0
 var meteor_spawn_rate = 50
 var max_meteors = 5
 
-var meteor_spawn_distance = 15 # y coordinate just below spawn area
+var meteor_spawn_distance = -15 # z coordinate far enough ahead of ship
 
 var is_spawning = false
 
@@ -30,7 +30,7 @@ func _on_timeout():
 			# Range on x and z axes within spaceship walls, with y set far enough for them to look small
 			var walls = get_parent().get_node("SpaceWalls")
 			var x = rand_range(walls.min_x, walls.max_x)
-			var z = rand_range(walls.min_z, walls.max_z)
-			item.translation = Vector3(x, meteor_spawn_distance, z)
+			var y = rand_range(walls.min_y, walls.max_y)
+			item.translation = Vector3(x, y, meteor_spawn_distance)
 			get_parent().add_child(item)
 			meteor_count += 1
