@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
-[ext_resource path="res://assets/space_bg_panorama.jpg" type="Texture" id=2]
+[ext_resource path="res://assets/8k_stars.jpg" type="Texture" id=2]
 [ext_resource path="res://MeteorSpawner.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/sprites/ShipManager.tscn" type="PackedScene" id=5]
@@ -15,6 +15,10 @@ background_mode = 2
 background_sky = SubResource( 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 3.69
+
+[sub_resource type="ShaderMaterial" id=3]
+
+[sub_resource type="SphereMesh" id=4]
 
 [node name="Root" type="Spatial"]
 script = ExtResource( 1 )
@@ -42,6 +46,12 @@ script = ExtResource( 6 )
 visible = false
 margin_right = 215.0
 margin_bottom = 46.0
+
+[node name="Particles" type="Particles" parent="."]
+amount = 1000
+visibility_aabb = AABB( -59.2477, -61.3236, -54.0056, 118.495, 122.647, 108.011 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 4 )
 [connection signal="game_reset" from="UIManager" to="." method="_on_game_reset"]
 [connection signal="game_start" from="UIManager" to="." method="_on_game_start"]
 [connection signal="timeout" from="EncounterManager" to="EncounterManager" method="_on_EncounterManager_timeout"]
