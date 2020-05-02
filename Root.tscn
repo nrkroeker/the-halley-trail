@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://assets/space_bg_panorama.jpg" type="Texture" id=2]
 [ext_resource path="res://MeteorSpawner.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/sprites/ShipManager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://EncounterManager.gd" type="Script" id=6]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 2 )
@@ -31,5 +32,16 @@ script = ExtResource( 3 )
 [node name="UIManager" parent="." instance=ExtResource( 4 )]
 
 [node name="ShipManager" parent="." instance=ExtResource( 5 )]
+
+[node name="EncounterManager" type="Timer" parent="."]
+editor/display_folded = true
+one_shot = true
+script = ExtResource( 6 )
+
+[node name="EncounterTitle" type="Label" parent="EncounterManager"]
+visible = false
+margin_right = 215.0
+margin_bottom = 46.0
 [connection signal="game_reset" from="UIManager" to="." method="_on_game_reset"]
 [connection signal="game_start" from="UIManager" to="." method="_on_game_start"]
+[connection signal="timeout" from="EncounterManager" to="EncounterManager" method="_on_EncounterManager_timeout"]

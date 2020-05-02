@@ -5,6 +5,7 @@ func _on_game_start():
 	$ShipManager.set_movement(true)
 	$MeteorSpawner.start()
 	$MeteorSpawner.set_spawning(true)
+	$EncounterManager.begin_cycle()
 
 func _on_game_reset():
 	#set_current_camera("front")
