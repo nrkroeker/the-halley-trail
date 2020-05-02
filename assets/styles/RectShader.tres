@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D viewport_texture : hint_black;
+
+void fragment()
+{
+	vec4 screen_fragment = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 viewport_fragment = texture(viewport_texture, SCREEN_UV);
+	
+	vec3 final_color = mix(viewport_fragment.rgb, screen_fragment.rgb, screen_fragment.a);
+	
+	COLOR.rgb = final_color;
+}"
+
+[resource]
+shader = SubResource( 1 )

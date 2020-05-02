@@ -25,8 +25,8 @@ window/stretch/aspect="keep"
 
 [gui]
 
-theme/custom="res://assets/theme.tres"
-theme/custom_font="res://assets/orbitron_dynamicfont.tres"
+theme/custom="res://assets/styles/theme.tres"
+theme/custom_font="res://assets/styles/orbitron_dynamicfont.tres"
 
 [input]
 

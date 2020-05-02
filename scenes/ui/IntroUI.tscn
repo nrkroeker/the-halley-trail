@@ -4,6 +4,8 @@
 [ext_resource path="res://assets/styles/label_background.tres" type="StyleBox" id=2]
 [ext_resource path="res://assets/actions/SubmitShortcut.tres" type="ShortCut" id=3]
 
+
+
 [node name="IntroUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0

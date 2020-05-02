@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Skybox.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/8k_stars.jpg" type="Texture" id=2]
+[ext_resource path="res://scenes/sprites/Sun.tscn" type="PackedScene" id=3]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 2 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.67451, 0.670588, 0.670588, 1 )
+
+[node name="Skybox" type="Spatial"]
+script = ExtResource( 1 )
+target_camera_path = NodePath("SkyboxCamera")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="Sun" parent="." instance=ExtResource( 3 )]
+transform = Transform( 2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, -6, 3, -16 )
+
+[node name="SkyboxCamera" type="Camera" parent="."]

@@ -1,6 +1,9 @@
 extends Spatial
 
-onready var hud = get_parent().get_node("UIManager/HudUI")
+export (NodePath) var path_to_camera
+export (NodePath) var path_to_ui
+onready var ui = get_node(path_to_ui)
+onready var hud = ui.get_node("HudUI")
 
 var GUIDE_X_RANGE = 700
 var GUIDE_Y_RANGE = 50.0
@@ -13,7 +16,7 @@ var CAMERA_OFFSET = Vector3(0,15,50)
 
 onready var guide = $PositionGuide
 onready var ship = $Ship
-onready var camera = $Camera
+onready var camera = get_node(path_to_camera)
 
 var is_movable = false
 
@@ -98,6 +101,6 @@ func camera_movement():
 
 func _on_Ship_collision():
 	health -= 1
-	hud.set_health_label(hud.get_new_label(health, max_health))
+	hud.set_health_label(health, max_health)
 	if health == 0:
 		print("you lose!")
