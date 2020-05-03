@@ -32,6 +32,7 @@ margin_right = 215.0
 margin_bottom = 46.0
 
 [node name="SkyboxViewport" type="Viewport" parent="."]
+editor/display_folded = true
 own_world = true
 render_target_update_mode = 3
 script = ExtResource( 5 )
@@ -41,6 +42,7 @@ path_to_viewport_viewer = NodePath("../UI/3DSkyboxViewer")
 target_camera_path = NodePath("../../Camera")
 
 [node name="UI" type="Control" parent="."]
+editor/display_folded = true
 margin_right = 1024.0
 margin_bottom = 600.0
 

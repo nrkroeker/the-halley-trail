@@ -28,8 +28,8 @@ var is_turning_left = false
 var z_rotation = 0.0
 var max_z_rotation = 90.0
 
-var health = 100
-var max_health = 100
+var max_health = 50
+var health = max_health
 
 func _physics_process(delta):
 	if (is_movable):
