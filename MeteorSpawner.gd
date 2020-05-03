@@ -13,7 +13,7 @@ var is_spawning = false
 
 func _ready():
 	connect("timeout",self,"_on_timeout")
-	# zone = $MeteorZone
+	randomize()
 
 func set_spawning(new_state):
 	is_spawning = new_state
