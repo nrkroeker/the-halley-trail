@@ -84,9 +84,9 @@ func ship_movement():
 	
 	# Determine rotation about the y/forward axis
 	if is_turning_right and !is_turning_left:
-		z_rotation = lerp(z_rotation, max_z_rotation, 0.02)
-	elif is_turning_left and !is_turning_right:
 		z_rotation = lerp(z_rotation, -max_z_rotation, 0.02)
+	elif is_turning_left and !is_turning_right:
+		z_rotation = lerp(z_rotation, max_z_rotation, 0.02)
 	else:
 		z_rotation = lerp(z_rotation, 0, 0.05)
 	

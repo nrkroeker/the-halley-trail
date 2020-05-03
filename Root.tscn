@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://MeteorSpawner.gd" type="Script" id=2]
@@ -9,10 +9,6 @@
 [ext_resource path="res://assets/styles/RectShader.tres" type="Material" id=7]
 [ext_resource path="res://assets/styles/RectTexture.tres" type="Texture" id=8]
 [ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=9]
-
-[sub_resource type="ShaderMaterial" id=1]
-
-[sub_resource type="SphereMesh" id=2]
 
 [node name="Root" type="Spatial"]
 script = ExtResource( 1 )
@@ -33,12 +29,6 @@ script = ExtResource( 4 )
 visible = false
 margin_right = 215.0
 margin_bottom = 46.0
-
-[node name="Particles" type="Particles" parent="."]
-amount = 1000
-visibility_aabb = AABB( -59.2477, -61.3236, -54.0056, 118.495, 122.647, 108.011 )
-process_material = SubResource( 1 )
-draw_pass_1 = SubResource( 2 )
 
 [node name="SkyboxViewport" type="Viewport" parent="."]
 own_world = true
