@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://scenes/sprites/ShipManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://EncounterManager.gd" type="Script" id=3]
 [ext_resource path="res://MeteorSpawner.gd" type="Script" id=4]
-[ext_resource path="res://Viewport.gd" type="Script" id=5]
-[ext_resource path="res://scenes/Skybox.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/styles/RectShader.tres" type="Material" id=7]
-[ext_resource path="res://assets/styles/RectTexture.tres" type="Texture" id=8]
-[ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/styles/label_alert.tres" type="StyleBox" id=5]
+[ext_resource path="res://Viewport.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Skybox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/styles/RectShader.tres" type="Material" id=8]
+[ext_resource path="res://assets/styles/RectTexture.tres" type="Texture" id=9]
+[ext_resource path="res://scenes/ui/UIManager.tscn" type="PackedScene" id=10]
 
 [node name="Root" type="Spatial"]
 transform = Transform( 1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0 )
@@ -19,6 +20,7 @@ path_to_camera = NodePath("../Camera")
 path_to_ui = NodePath("../UI/UIManager")
 
 [node name="EncounterManager" type="Timer" parent="."]
+editor/display_folded = true
 one_shot = true
 script = ExtResource( 3 )
 
@@ -31,14 +33,42 @@ margin_bottom = 46.0
 script = ExtResource( 4 )
 path_to_ship_manager = NodePath("../../ShipManager")
 
+[node name="AlertTimer" type="Timer" parent="EncounterManager"]
+wait_time = 2.0
+one_shot = true
+
+[node name="EncounterAlert" type="HBoxContainer" parent="EncounterManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -180.5
+margin_top = -59.0
+margin_right = 180.5
+margin_bottom = 59.0
+alignment = 1
+
+[node name="AlertLabel" type="Label" parent="EncounterManager/EncounterAlert"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 355.0
+margin_bottom = 112.0
+grow_horizontal = 2
+custom_styles/normal = ExtResource( 5 )
+text = "ALERT
+
+ASTEROID BELT INCOMING"
+align = 1
+
 [node name="SkyboxViewport" type="Viewport" parent="."]
 editor/display_folded = true
 own_world = true
 render_target_update_mode = 3
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 path_to_viewport_viewer = NodePath("../UI/3DSkyboxViewer")
 
-[node name="Skybox" parent="SkyboxViewport" instance=ExtResource( 6 )]
+[node name="Skybox" parent="SkyboxViewport" instance=ExtResource( 7 )]
 target_camera_path = NodePath("../../Camera")
 
 [node name="UI" type="Control" parent="."]
@@ -46,17 +76,19 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="3DSkyboxViewer" type="TextureRect" parent="UI"]
-material = ExtResource( 7 )
+material = ExtResource( 8 )
 margin_right = 1024.0
 margin_bottom = 600.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 
-[node name="UIManager" parent="UI" instance=ExtResource( 9 )]
+[node name="UIManager" parent="UI" instance=ExtResource( 10 )]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 50 )
 far = 350.0
 [connection signal="lose_game" from="ShipManager" to="." method="_on_game_lose"]
 [connection signal="timeout" from="EncounterManager" to="EncounterManager" method="_on_EncounterManager_timeout"]
+[connection signal="win_game" from="EncounterManager" to="." method="_on_game_win"]
+[connection signal="timeout" from="EncounterManager/AlertTimer" to="EncounterManager" method="_on_AlertTimer_timeout"]
 [connection signal="game_start" from="UI/UIManager" to="." method="_on_game_start"]

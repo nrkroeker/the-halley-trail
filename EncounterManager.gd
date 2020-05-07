@@ -1,9 +1,11 @@
 extends Timer
 
+signal win_game
+
 var encounters = ["Asteroid Belt", "Nothing"]
 
 var current_encounter = "Asteroid Belt"
-var ENCOUNTER_LENGTH = 30
+var ENCOUNTER_LENGTH = 10
 
 var seconds = ENCOUNTER_LENGTH
 var cycle_length = 10
@@ -32,14 +34,27 @@ func _on_EncounterManager_timeout():
 	update_encounter_title()
 	if seconds == 0:
 		self.stop()
+		end_encounter()
+		cycle_count += 1
+		if cycle_count == 2:
+			$EncounterTitle.hide()
+			emit_signal("win_game")
+		else:
+			begin_cycle()
 	else:
 		self.start()
-		cycle_count += 1
 		
 func start_random_encounter():
-	$MeteorSpawner.begin()
+	$EncounterAlert.show()
+	$AlertTimer.start()
+	#$MeteorSpawner.begin()
 	
 func end_encounter():
 	match current_encounter:
 		"Asteroid Belt":
 			$MeteorSpawner.end()
+
+
+func _on_AlertTimer_timeout():
+	$EncounterAlert.hide()
+	$MeteorSpawner.begin()

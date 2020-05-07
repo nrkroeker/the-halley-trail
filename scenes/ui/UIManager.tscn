@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ui/UIManager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/StartUI.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/ui/NameEntryUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ui/HudUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/ui/LoseUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ui/WinUI.tscn" type="PackedScene" id=7]
 
 [node name="UIManager" type="Control"]
 anchor_right = 1.0
@@ -28,4 +29,7 @@ visible = false
 visible = false
 
 [node name="LoseUI" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="WinUI" parent="." instance=ExtResource( 7 )]
 visible = false

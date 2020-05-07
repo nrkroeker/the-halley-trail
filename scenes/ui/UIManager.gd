@@ -16,6 +16,8 @@ func transition_state(new_state):
 			$HudUI.hide()
 		"lose":
 			$LoseUI.hide()
+		"win":
+			$WinUI.hide()
 	ui_state = new_state
 	match new_state:
 		"start":
@@ -29,6 +31,8 @@ func transition_state(new_state):
 			$HudUI.show()
 		"lose":
 			$LoseUI.show()
+		"win":
+			$WinUI.show()
 
 func set_ship_name(name):
 	$HudUI.set_ship_name(name)
