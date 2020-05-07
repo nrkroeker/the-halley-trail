@@ -101,17 +101,21 @@ Use the arrow keys to control your ship's movement in the X and Y axes (you can'
 
 ## Screenshots
 
-!["begin" screen](https://i.imgur.com/AA6gk9a.png)
+!["begin" screen](https://i.imgur.com/HBj8lEf.png)
 
-![summary screen](https://i.imgur.com/GT7DlxM.png)
+![summary screen](https://i.imgur.com/hnumCwG.png)
 
-![naming screen](https://i.imgur.com/clL1XjD.png)
+![naming screen](https://i.imgur.com/BsLVwmh.png)
 
-![meteor dodging starts](https://i.imgur.com/rbvb4tB.png)
+![asteroid alert](https://i.imgur.com/PLik0Ud.png)
 
-![health decreasing](https://i.imgur.com/FbY4OOk.png)
+![dodging asteroids](https://i.imgur.com/joDn4pQ.png)
 
-![strafing](https://i.imgur.com/KuEh3ru.png)
+![asteroid collision](https://i.imgur.com/DIelrcB.png)
+
+![lose screen](https://i.imgur.com/yLelk0m.png)
+
+![win screen](https://i.imgur.com/k6s3Qcf.png)
 
 ## Future Goals
 
