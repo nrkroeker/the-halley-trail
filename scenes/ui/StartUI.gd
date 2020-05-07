@@ -1,6 +1,6 @@
 extends Control
 
-signal transition
+onready var uiManager = get_parent()
 
 func _on_BeginButton_pressed():
-	emit_signal("transition")
+	uiManager.transition_state("intro")

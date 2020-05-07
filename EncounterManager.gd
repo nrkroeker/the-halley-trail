@@ -1,5 +1,7 @@
 extends Timer
 
+var encounters = ["Asteroid Belt", "Nothing"]
+
 var current_encounter = "Asteroid Belt"
 var ENCOUNTER_LENGTH = 30
 
@@ -10,9 +12,14 @@ var cycle_count = 0
 func begin_cycle():
 	$EncounterTitle.show()
 	update_encounter_title()
+	start_random_encounter()
 	# Start a new encounter's cycle, which lasts for 30 seconds unless stopped early
 	seconds = ENCOUNTER_LENGTH
 	self.start()
+
+func end_cycle():
+	self.stop()
+	end_encounter()
 
 func end_EventCycleTimer():
 	self.stop()
@@ -28,3 +35,11 @@ func _on_EncounterManager_timeout():
 	else:
 		self.start()
 		cycle_count += 1
+		
+func start_random_encounter():
+	$MeteorSpawner.begin()
+	
+func end_encounter():
+	match current_encounter:
+		"Asteroid Belt":
+			$MeteorSpawner.end()

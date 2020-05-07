@@ -5,11 +5,24 @@ var meteor_count = 0
 var meteor_spawn_rate = 80
 var max_meteors = 100
 
-onready var ship_manager = get_parent().get_node("ShipManager")
+export (NodePath) var path_to_ship_manager;
+
+onready var ship_manager = get_node(path_to_ship_manager)
 
 var meteor_spawn_distance = -100 # z coordinate far enough ahead of ship
 
 var is_spawning = false
+
+func begin():
+	self.start()
+	self.set_spawning(true)
+
+func end():
+	self.stop()
+	self.set_spawning(false)
+	for n in self.get_children():
+		self.remove_child(n)
+		n.queue_free()
 
 func _ready():
 	connect("timeout",self,"_on_timeout")
@@ -25,6 +38,7 @@ func remove_meteor():
 	meteor_count -= 1
 
 func _on_timeout():
+	# TODO Remove meteors when they pass ship so we can actually decrease meteor count
 	if is_spawning == true and meteor_count < max_meteors:
 		var spawn = rand_range(0, 100)
 		if spawn <= meteor_spawn_rate:

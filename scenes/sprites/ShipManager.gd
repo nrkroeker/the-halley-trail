@@ -1,5 +1,7 @@
 extends Spatial
 
+signal lose_game
+
 export (NodePath) var path_to_camera
 export (NodePath) var path_to_ui
 onready var ui = get_node(path_to_ui)
@@ -28,7 +30,7 @@ var is_turning_left = false
 var z_rotation = 0.0
 var max_z_rotation = 90.0
 
-var max_health = 50
+var max_health = 10
 var health = max_health
 
 func _physics_process(delta):
@@ -37,6 +39,10 @@ func _physics_process(delta):
 		get_input(delta)
 		ship_movement()
 		camera_movement()
+
+func reset_health():
+	health = max_health
+	hud.set_health_label(health, max_health)
 
 func set_movement(movement_state):
 	is_movable = movement_state
@@ -104,3 +110,4 @@ func _on_Ship_collision():
 	hud.set_health_label(health, max_health)
 	if health == 0:
 		print("you lose!")
+		emit_signal("lose_game")

@@ -1,26 +1,34 @@
 extends Control
 
 signal game_start
-signal game_reset
 
 var ui_state = "start"
 
-func _on_UI_transition():
+func transition_state(new_state):
 	match ui_state:
 		"start":
-			ui_state = "intro"
 			$StartUI.hide()
-			$IntroUI.show()
 		"intro":
-			ui_state = "name"
 			$IntroUI.hide()
-			$NameEntryUI.show()
 		"name":
-			ui_state = "hud"
 			$NameEntryUI.hide()
-			$HudUI.show()
-			emit_signal("game_start")
 		"hud":
 			$HudUI.hide()
+		"lose":
+			$LoseUI.hide()
+	ui_state = new_state
+	match new_state:
+		"start":
 			$StartUI.show()
-			emit_signal("game_reset")
+		"intro":
+			$IntroUI.show()
+		"name":
+			$NameEntryUI.show()
+		"hud":
+			emit_signal("game_start")
+			$HudUI.show()
+		"lose":
+			$LoseUI.show()
+
+func set_ship_name(name):
+	$HudUI.set_ship_name(name)
