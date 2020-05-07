@@ -82,7 +82,7 @@ Tune encounter probabilities, asteroid speeds, spawn rate, and rotation, player 
 
 
 *   arrow keys by b farias from the Noun Project
-*   Spaceship and asteroid models from Kenney’s Space Kit
+*   Spaceship and asteroid models and textures from [Kenney’s Space Kit](https://kenney.nl/assets/space-kit)
 *   Sun/planet/star image textures from Solar System Scope: [Solar Textures](https://www.solarsystemscope.com/textures/)
 
 <!-- Docs to Markdown version 1.0β22 -->
@@ -132,7 +132,3 @@ Use the arrow keys to control your ship's movement in the X and Y axes (you can'
 * Once I realized the rotating background wouldn't work consistently I got pretty hung up on how to handle the movement of the ship in a way that was aesthetically pleasing while still playable.
 
 * Limiting the scope enough to actually work on legit features! I had a whole huge idea but because I got stuck on silly roadblocks, I ended up only getting to a few pieces of it. I'm determined to keep going on this project though.
-
-## Credits
-
-[Kenney](https://www.kenney.nl/): Assets (spaceship & asteroid models and textures)
